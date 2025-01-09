@@ -1,0 +1,77 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.panel {
+    width: 350px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+}
+
+.panel-header {
+    margin-bottom: 20px;
+}
+
+.panel-header h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.panel-header p {
+    font-size: 14px;
+    color: #666;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.new-match-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.finished-matches-button {
+    background-color: #007BFF;
+    color: white;
+}
+
+
+button:hover {
+    opacity: 0.9;
+}
+
+.panel-footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+}
+
+.panel-footer p {
+    margin: 0;
+    line-height: 1.4;
+}
