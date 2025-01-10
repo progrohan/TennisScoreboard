@@ -14,8 +14,8 @@ import java.util.UUID;
 public class OngoingMatchDTO {
     private UUID uuid;
 
-    private PlayerResponseDTO firstPlayer;
-    private PlayerResponseDTO secondPlayer;
+    private PlayerDTO firstPlayer;
+    private PlayerDTO secondPlayer;
 
     private int firstPlayerSets;
     private int secondPlayerSets;

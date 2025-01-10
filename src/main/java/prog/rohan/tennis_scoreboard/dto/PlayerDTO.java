@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PlayerResponseDTO {
+public class PlayerDTO {
     Long id;
     String name;
 }
