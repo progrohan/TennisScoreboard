@@ -1,8 +1,9 @@
 package prog.rohan.tennis_scoreboard.service;
 
+
 import lombok.Getter;
 import prog.rohan.tennis_scoreboard.dto.OngoingMatchDTO;
-import prog.rohan.tennis_scoreboard.dto.PlayerResponseDTO;
+import prog.rohan.tennis_scoreboard.dto.PlayerDTO;
 
 import java.util.Map;
 import java.util.UUID;
@@ -10,16 +11,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class OngoingMatchService {
     @Getter
-    private OngoingMatchService INSTANCE = new OngoingMatchService();
+    private static OngoingMatchService INSTANCE = new OngoingMatchService();
     private Map<UUID, OngoingMatchDTO> ongoingMatches = new ConcurrentHashMap<>();
 
     private OngoingMatchService(){};
 
-    OngoingMatchDTO getByUUId(UUID uuid){
+    public OngoingMatchDTO getByUUId(UUID uuid){
         return ongoingMatches.get(uuid);
     }
 
-    UUID startNewMatch(PlayerResponseDTO firstPlayer, PlayerResponseDTO secondPlayer){
+    public UUID startNewMatch(PlayerDTO firstPlayer, PlayerDTO secondPlayer){
         UUID uuid = UUID.randomUUID();
         OngoingMatchDTO ongoingMatch = OngoingMatchDTO
                                                     .builder()
@@ -31,7 +32,7 @@ public class OngoingMatchService {
         return uuid;
     }
 
-    void deleteMatch(UUID uuid){
+    public void deleteMatch(UUID uuid){
         ongoingMatches.remove(uuid);
     }
 
