@@ -16,6 +16,9 @@ import java.util.UUID;
 
 @WebServlet(name = "new-match", value = "/new-match")
 public class NewMatchServlet extends HttpServlet {
+    PlayerService playerService = new PlayerService();
+    OngoingMatchService ongoingMatchService = OngoingMatchService.getINSTANCE();
+    DataValidator dataValidator = new DataValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,10 +27,6 @@ public class NewMatchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PlayerService playerService = new PlayerService();
-        OngoingMatchService ongoingMatchService = OngoingMatchService.getINSTANCE();
-        DataValidator dataValidator = new DataValidator();
-
         String firstPlayerName = req.getParameter("firstUsername");
         String secondPlayerName = req.getParameter("secondUsername");
         dataValidator.checkNamesSameness(firstPlayerName, secondPlayerName);
