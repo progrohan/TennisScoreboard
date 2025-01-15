@@ -31,14 +31,13 @@ public class NewMatchServlet extends HttpServlet {
         String secondPlayerName = req.getParameter("secondUsername");
         dataValidator.checkNamesSameness(firstPlayerName, secondPlayerName);
 
-        PlayerDTO firstPlayer = playerService.saveIfNotExists(firstPlayerName);
-        PlayerDTO secondPlayer = playerService.saveIfNotExists(secondPlayerName);
+        PlayerDTO firstPlayer = playerService.save(firstPlayerName);
+        PlayerDTO secondPlayer = playerService.save(secondPlayerName);
 
         UUID uuid = ongoingMatchService.startNewMatch(firstPlayer, secondPlayer);
 
         resp.sendRedirect(req.getContextPath()
                           + "/match-score?uuid=)"
                           + uuid);
-        ongoingMatchService.deleteMatch(uuid);
     }
 }

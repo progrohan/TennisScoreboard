@@ -22,12 +22,14 @@ public class OngoingMatchService {
 
     public UUID startNewMatch(PlayerDTO firstPlayer, PlayerDTO secondPlayer){
         UUID uuid = UUID.randomUUID();
+
         OngoingMatchDTO ongoingMatch = OngoingMatchDTO
                                                     .builder()
                                                     .uuid(uuid)
                                                     .firstPlayer(firstPlayer)
                                                     .secondPlayer(secondPlayer)
                                                     .build();
+
         ongoingMatches.put(uuid, ongoingMatch);
         return uuid;
     }
