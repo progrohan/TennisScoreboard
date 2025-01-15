@@ -1,5 +1,7 @@
 package prog.rohan.tennis_scoreboard.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,20 +19,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(name = "Matches")
+@Entity
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    Player player1;
+    @JoinColumn(name = "player1")
+    private Player player1;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    Player player2;
+    @JoinColumn(name = "player2")
+    private Player player2;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    Player winner;
+    @JoinColumn(name = "winner")
+    private Player winner;
 }
