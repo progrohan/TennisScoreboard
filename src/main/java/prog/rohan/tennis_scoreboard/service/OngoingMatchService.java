@@ -4,6 +4,7 @@ package prog.rohan.tennis_scoreboard.service;
 import lombok.Getter;
 import prog.rohan.tennis_scoreboard.dto.OngoingMatchDTO;
 import prog.rohan.tennis_scoreboard.dto.PlayerDTO;
+import prog.rohan.tennis_scoreboard.dto.Score;
 
 import java.util.Map;
 import java.util.UUID;
@@ -28,6 +29,8 @@ public class OngoingMatchService {
                                                     .uuid(uuid)
                                                     .firstPlayer(firstPlayer)
                                                     .secondPlayer(secondPlayer)
+                                                    .firstPlayerScore(new Score())
+                                                    .secondPlayerScore(new Score())
                                                     .build();
 
         ongoingMatches.put(uuid, ongoingMatch);
