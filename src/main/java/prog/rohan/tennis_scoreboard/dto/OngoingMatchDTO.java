@@ -17,12 +17,6 @@ public class OngoingMatchDTO {
     private PlayerDTO firstPlayer;
     private PlayerDTO secondPlayer;
 
-    private int firstPlayerSets;
-    private int secondPlayerSets;
-
-    private int firstPlayerGames;
-    private int secondPlayerGames;
-
-    private int firstPlayerPoints;
-    private int secondPlayerPoints;
+    private Score firstPlayerScore;
+    private Score secondPlayerScore;
 }
