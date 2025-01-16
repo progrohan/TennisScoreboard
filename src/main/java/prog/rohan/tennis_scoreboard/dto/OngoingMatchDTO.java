@@ -19,4 +19,6 @@ public class OngoingMatchDTO {
 
     private Score firstPlayerScore;
     private Score secondPlayerScore;
+
+    Long winnerId;
 }
