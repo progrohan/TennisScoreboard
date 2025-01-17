@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class PlayerRepositrory extends BaseRepository<Long, Player>{
     @Getter
-    private static PlayerRepositrory INSTANCE = new PlayerRepositrory();
+    private static final PlayerRepositrory INSTANCE = new PlayerRepositrory();
 
     private PlayerRepositrory(){
         super(Player.class);
