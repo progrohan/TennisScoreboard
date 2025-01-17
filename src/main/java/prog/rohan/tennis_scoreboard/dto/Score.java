@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Score {
+    private String displayedPoints = "0";
     private int sets;
     private int games;
     private int points;
