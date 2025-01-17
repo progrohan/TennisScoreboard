@@ -27,7 +27,7 @@
             <td class="player-name">${ongoingMatch.firstPlayer.name}</td>
             <td>${ongoingMatch.firstPlayerScore.sets}</td>
             <td>${ongoingMatch.firstPlayerScore.games}</td>
-            <td>${ongoingMatch.firstPlayerScore.points}</td>
+            <td>${ongoingMatch.firstPlayerScore.displayedPoints}</td>
             <td>
                 <form action="/match-score" method="POST">
                     <input type="hidden" name="uuid" value="${ongoingMatch.uuid}">
@@ -40,7 +40,7 @@
             <td class="player-name">${ongoingMatch.secondPlayer.name}</td>
             <td>${ongoingMatch.secondPlayerScore.sets}</td>
             <td>${ongoingMatch.secondPlayerScore.games}</td>
-            <td>${ongoingMatch.secondPlayerScore.points}</td>
+            <td>${ongoingMatch.secondPlayerScore.displayedPoints}</td>
             <td>
                 <form action="/match-score" method="POST">
                     <input type="hidden" name="uuid" value="${ongoingMatch.uuid}">

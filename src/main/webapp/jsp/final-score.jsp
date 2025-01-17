@@ -22,17 +22,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="${match.firstPlayerScore.points > match.secondPlayerScore.points ? 'winner-row' : ''}">
+        <tr class="${match.winnerId == match.firstPlayer.id ? 'winner-row' : ''}">
             <td class="player-name">${match.firstPlayer.name}</td>
             <td>${match.firstPlayerScore.sets}</td>
             <td>${match.firstPlayerScore.games}</td>
-            <td>${match.firstPlayerScore.points}</td>
+            <td>${match.firstPlayerScore.displayedPoints}</td>
         </tr>
-        <tr class="${match.firstPlayerScore.points < match.secondPlayerScore.points ? 'winner-row' : ''}">
+        <tr class="${match.winnerId == match.secondPlayer.id ? 'winner-row' : ''}">
             <td class="player-name">${match.secondPlayer.name}</td>
             <td>${match.secondPlayerScore.sets}</td>
             <td>${match.secondPlayerScore.games}</td>
-            <td>${match.secondPlayerScore.points}</td>
+            <td>${match.secondPlayerScore.displayedPoints}</td>
         </tr>
         </tbody>
     </table>
