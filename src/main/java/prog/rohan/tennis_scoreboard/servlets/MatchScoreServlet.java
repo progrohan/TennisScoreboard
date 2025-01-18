@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import prog.rohan.tennis_scoreboard.dto.FinishedMatchDTO;
 import prog.rohan.tennis_scoreboard.dto.OngoingMatchDTO;
+import prog.rohan.tennis_scoreboard.mapper.OngoingMatchMapper;
 import prog.rohan.tennis_scoreboard.service.FinishedMatchesPersistenceService;
 import prog.rohan.tennis_scoreboard.service.MatchScoreCalculationService;
 import prog.rohan.tennis_scoreboard.service.OngoingMatchService;
@@ -20,7 +21,6 @@ public class MatchScoreServlet extends HttpServlet {
     private final OngoingMatchService ongoingMatchService = OngoingMatchService.getINSTANCE();
     private final MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService();
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
-    private final PlayerService playerService = new PlayerService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,11 +43,7 @@ public class MatchScoreServlet extends HttpServlet {
         ongoingMatch = matchScoreCalculationService.increaseScore(ongoingMatch, winnerId);
 
         if(matchScoreCalculationService.isMatchOver(ongoingMatch)){
-            FinishedMatchDTO finishedMatch = FinishedMatchDTO.builder()
-                    .firstPlayer(ongoingMatch.getFirstPlayer())
-                    .secondPlayer(ongoingMatch.getSecondPlayer())
-                    .winner(playerService.findById(ongoingMatch.getWinnerId()))
-                    .build();
+            FinishedMatchDTO finishedMatch = OngoingMatchMapper.INSTANCE.toFinished(ongoingMatch);
             finishedMatchesPersistenceService.save(finishedMatch);
             req.setAttribute("match", ongoingMatch);
             ongoingMatchService.deleteMatch(uuid);
