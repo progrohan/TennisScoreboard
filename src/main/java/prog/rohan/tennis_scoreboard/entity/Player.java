@@ -10,14 +10,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Players")
 @Entity
-@ToString
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
