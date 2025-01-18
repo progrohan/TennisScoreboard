@@ -12,15 +12,14 @@ public class MatchScoreCalculationService {
     private final int SETS_TO_WIN = 2;
     private final int NECESSARY_DIFFERENCE = 2;
 
-    private final String[] pointsDisplay = {"0","15", "30", "40", "AD"};
+    private final String[] pointsDisplay = {"0", "15", "30", "40", "AD"};
 
-    public OngoingMatchDTO increaseScore(OngoingMatchDTO ongoingMatch, Long winnerId){
-        if(Objects.equals(ongoingMatch.getFirstPlayer().getId(), winnerId))
-        {
+    public OngoingMatchDTO increaseScore(OngoingMatchDTO ongoingMatch, Long winnerId) {
+        if (Objects.equals(ongoingMatch.getFirstPlayer().getId(), winnerId)) {
             increasePoints(ongoingMatch.getFirstPlayerScore(),
                     ongoingMatch.getSecondPlayerScore());
             ongoingMatch.setWinnerId(ongoingMatch.getFirstPlayer().getId());
-        }else{
+        } else {
             increasePoints(ongoingMatch.getSecondPlayerScore(), ongoingMatch.getFirstPlayerScore());
             ongoingMatch.setWinnerId(ongoingMatch.getSecondPlayer().getId());
         }
@@ -28,7 +27,7 @@ public class MatchScoreCalculationService {
         return ongoingMatch;
     }
 
-    public boolean isMatchOver(OngoingMatchDTO match){
+    public boolean isMatchOver(OngoingMatchDTO match) {
         return match.getFirstPlayerScore().getSets() >= SETS_TO_WIN
                || match.getSecondPlayerScore().getSets() >= SETS_TO_WIN;
     }
@@ -55,16 +54,16 @@ public class MatchScoreCalculationService {
     }
 
 
-    private void increaseGames(Score winnerScore, Score loserScore){
-            winnerScore.setGames(winnerScore.getGames() + 1);
-            if(winnerScore.getGames() >= GAMES_TO_SET &&
-               winnerScore.getGames() - loserScore.getGames() >= NECESSARY_DIFFERENCE) {
-                makeZeroGames(winnerScore, loserScore);
-                increaseSets(winnerScore, loserScore);
-            }
+    private void increaseGames(Score winnerScore, Score loserScore) {
+        winnerScore.setGames(winnerScore.getGames() + 1);
+        if (winnerScore.getGames() >= GAMES_TO_SET &&
+            winnerScore.getGames() - loserScore.getGames() >= NECESSARY_DIFFERENCE) {
+            makeZeroGames(winnerScore, loserScore);
+            increaseSets(winnerScore, loserScore);
+        }
     }
 
-    private void increaseSets(Score winnerScore, Score loserScore){
+    private void increaseSets(Score winnerScore, Score loserScore) {
         winnerScore.setSets(winnerScore.getSets() + 1);
     }
 
@@ -78,34 +77,34 @@ public class MatchScoreCalculationService {
         }
     }
 
-    private void makeZeroPoints(Score firstPlayer, Score secondPlayer){
+    private void makeZeroPoints(Score firstPlayer, Score secondPlayer) {
         firstPlayer.setPoints(0);
         firstPlayer.setDisplayedPoints(pointsDisplay[0]);
         secondPlayer.setPoints(0);
         secondPlayer.setDisplayedPoints(pointsDisplay[0]);
     }
 
-    private void makeZeroGames(Score firstPlayer, Score secondPlayer){
+    private void makeZeroGames(Score firstPlayer, Score secondPlayer) {
         firstPlayer.setGames(0);
         secondPlayer.setGames(0);
     }
 
-    private void increaseBothPoints(Score winnerScore){
+    private void increaseBothPoints(Score winnerScore) {
         winnerScore.setPoints(winnerScore.getPoints() + 1);
         winnerScore.setDisplayedPoints(pointsDisplay[winnerScore.getPoints()]);
     }
 
-    private void increaseBothTieBrakePoints(Score winnerScore){
+    private void increaseBothTieBrakePoints(Score winnerScore) {
         winnerScore.setPoints(winnerScore.getPoints() + 1);
         winnerScore.setDisplayedPoints(String.valueOf(winnerScore.getPoints()));
     }
 
-    private void decreaseBothPoints(Score winnerScore){
+    private void decreaseBothPoints(Score winnerScore) {
         winnerScore.setPoints(winnerScore.getPoints() - 1);
         winnerScore.setDisplayedPoints(pointsDisplay[winnerScore.getPoints()]);
     }
 
-    private boolean isTieBreak(Score first, Score second){
+    private boolean isTieBreak(Score first, Score second) {
         return first.getGames() == GAMES_TO_SET && second.getGames() == GAMES_TO_SET;
     }
 }
