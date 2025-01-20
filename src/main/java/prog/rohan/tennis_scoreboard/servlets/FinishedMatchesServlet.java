@@ -13,6 +13,7 @@ import java.util.List;
 
 @WebServlet(name="matches", value = "/matches")
 public class FinishedMatchesServlet extends HttpServlet {
+    private final int MATCHES_ON_PAGE = 5;
     FinishedMatchesPersistenceService matchesService = new FinishedMatchesPersistenceService();
 
     @Override
@@ -20,8 +21,9 @@ public class FinishedMatchesServlet extends HttpServlet {
         int page = Integer.parseInt(req.getParameter("page"));
         String filterByName = req.getParameter("filter_by_player_name");
 
-        int count = matchesService.count();
-        List<FinishedMatchDTO> matches = matchesService.findWithPagination(1, 5);
+        int matchesCount = matchesService.count();
+        int pagesCount = matchesCount / MATCHES_ON_PAGE;
+        List<FinishedMatchDTO> matches = matchesService.findWithPagination(page * MATCHES_ON_PAGE + 1, MATCHES_ON_PAGE);
         req.setAttribute("matches", matches);
         req.getRequestDispatcher("/jsp/matches.jsp").forward(req, resp);
     }

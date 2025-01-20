@@ -16,7 +16,7 @@
     <a class="new-match-button-link" href="${pageContext.request.contextPath}/new-match">
         <button class="new-match-button">Start new match</button>
     </a>
-    <a class="finished-matches-button-link" href="${pageContext.request.contextPath}/matches?page=1">
+    <a class="finished-matches-button-link" href="${pageContext.request.contextPath}/matches?page=1&filter_by_player_name=">
         <button class="finished-matches-button">See finished matches</button>
     </a>
     <section class="panel-footer">
