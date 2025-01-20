@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,13 +14,12 @@
     <div class="panel-header">
         <h1>Played Matches</h1>
     </div>
-    <!-- Форма фильтрации -->
     <form method="GET" action="/matches" class="filter-form">
+        <input type="hidden" name="page" value="1" />
         <input type="text" name="filter_by_player_name" placeholder="Enter player name" value="${param.filter_by_player_name}" />
         <button type="submit">Search</button>
     </form>
 
-    <!-- Таблица с матчами -->
     <table class="matches-table">
         <thead>
         <tr>
@@ -36,17 +36,31 @@
                 <td>${match.winner.name}</td>
             </tr>
         </c:forEach>
+        <c:forEach var="i" begin="${fn:length(matches)}" end="4">
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 
-    <!-- Пагинация -->
     <div class="pagination">
         <c:if test="${currentPage > 1}">
             <a href="/matches?page=${currentPage - 1}&filter_by_player_name=${param.filter_by_player_name}" class="page-button">Previous</a>
         </c:if>
-        <span>Page ${currentPage} of ${totalPages}</span>
+        <c:if test="${currentPage <= 1}">
+            <a href="/" class="home-button">Home</a>
+        </c:if>
+
+        <span class="page-info">Page ${currentPage} of ${totalPages}</span>
+
         <c:if test="${currentPage < totalPages}">
             <a href="/matches?page=${currentPage + 1}&filter_by_player_name=${param.filter_by_player_name}" class="page-button">Next</a>
+        </c:if>
+        <c:if test="${currentPage >= totalPages}">
+            <a href="/" class="home-button">Home</a>
         </c:if>
     </div>
 
