@@ -22,6 +22,10 @@ public class FinishedMatchesPersistenceService {
         return matchRepository.findAll().size();
     }
 
+    public int countWithFilter(String filter){
+        return matchRepository.findAllWithFilter(filter).size();
+    }
+
     public List<FinishedMatchDTO> findAll(){
         List<Match> matches = matchRepository.findAll();
         return matches
@@ -31,6 +35,20 @@ public class FinishedMatchesPersistenceService {
 
     public List<FinishedMatchDTO> findWithPagination(int offset, int count){
         List<Match> matches = matchRepository.findWithPagination(offset, count);
+        return matches
+                .stream()
+                .map(MatchMapper.INSTANCE::toDto).collect(Collectors.toList());
+    }
+
+    public List<FinishedMatchDTO> findAllWithFilter(String filter){
+        List<Match> matches = matchRepository.findAllWithFilter(filter);
+        return matches
+                .stream()
+                .map(MatchMapper.INSTANCE::toDto).collect(Collectors.toList());
+    }
+
+    public List<FinishedMatchDTO> findWithFilterAndPagination(String filter, int offset, int count) {
+        List<Match> matches = matchRepository.findWithFilterAndPagination(filter, offset, count);
         return matches
                 .stream()
                 .map(MatchMapper.INSTANCE::toDto).collect(Collectors.toList());
